@@ -28,7 +28,7 @@ def common_elements(list1, list2):
             result.append(element)
     return result
 
-filenames = get_filenames('C:\Users\Yogita\Desktop\April-2018\BIRCH_Output')
+filenames = get_filenames('BIRCH_Output')
 
 ofxls = []  # open file type xls 
 for i in range(len(filenames)):
@@ -86,7 +86,7 @@ for k in range(len(StockLists[0])):
       
     #Create an new Excel file and add a worksheet.
 flist = [os.path.basename(x) for x in glob.glob(os.getcwd() + '\\*.txt')]
-workbook = xlsxwriter.Workbook('C:\Users\Yogita\Desktop\April-2018\YP03NewRes.xls')
+workbook = xlsxwriter.Workbook('YP03NewRes.xls')
 	
 for sh in flist:
 	worksheet = workbook.add_worksheet(sh)

@@ -80,5 +80,4 @@ for i in range(1, len(StockLists)):
     # print('Reference list length', RefLen, 'for loop Number', i)
     print('Reference Stock list',ResultList)
     #Write output to file
-    
    
