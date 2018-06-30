@@ -32,16 +32,16 @@ def common_elements(list1, list2):
     return result
 
 
-filenames = get_filenames('Grouping_on_Following_Day')
+filenames = get_filenames('C:\Users\Yogita\Desktop\DS-StockAnalysis_U1\DS-StockAnalysis-master\BIRCH_Output')
 
-ofxls = []  # open file type xls 
+ofxls = []  # open file type xls
 for i in range(len(filenames)):
     ofxls.append(xlrd.open_workbook(filenames[i]))
 
 StockLists = []
 CountLists = []
 SheetCount = []
-Input = raw_input('Enter Stock Name:')
+Input = raw_input('Enter Stock Name:').upper()
 for i in range(0, len(filenames)):  # Iteration over each data file
     DayListCount = []
     DayStockList = []
@@ -74,7 +74,7 @@ for i in range(1, len(StockLists)):
     length = []
     ResultLists = []
     for j in range(len(StockLists[i])):
-        ResultList = common_elements(RefStockList, StockLists[i][j])
+        ResultList = common_elements(['MOSERBAER'], StockLists[i][j])
         # ResultLists.append(ResultList)
         # length.append(len(ResultList))
 
@@ -86,5 +86,5 @@ for i in range(1, len(StockLists)):
     # RefStockList = ResultLists[Idx]
     # RefLen = len(RefStockList)
     # print('Reference list length', RefLen, 'for loop Number', i)
-    print 'Reference Stock list', ResultList
+    print 'Stock list which behaves same as input stock', ResultList
     # Write output to file

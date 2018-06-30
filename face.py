@@ -2,6 +2,7 @@ from kivy.uix.boxlayout import BoxLayout
 from kivy.lang import Builder
 from kivy.app import App
 import YP03
+import sys
 import dfgui
 import pandas as pd
 
@@ -86,7 +87,7 @@ class faceTool(BoxLayout):
         self.result.text = str(res)
 
     def exit_it(self):
-        exit(0)
+        sys.exit()
 
     def graph(self):
         # xls = pd.read_excel('Res.xls')

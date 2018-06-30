@@ -1,4 +1,3 @@
-
 """
 Retrieve intraday stock data from Google Finance.
 """
@@ -45,19 +44,22 @@ def get_google_finance_intraday(ticker, period, days):
                 start = datetime.datetime.fromtimestamp(int(row[0][1:]))
                 times.append(start)
             else:
-                times.append(start+datetime.timedelta(seconds=period*int(row[0])))
+                times.append(start + datetime.timedelta(seconds=period * int(row[0])))
             rows.append(map(float, row[1:]))
     if len(rows):
         return pd.DataFrame(rows, index=pd.DatetimeIndex(times, name='Date'),
                             columns=columns)
-		
+
     else:
         return pd.DataFrame(rows, index=pd.DatetimeIndex(times, name='Date'))
-	
-	
-def write_csv(self,filename):
-    with open(filename,'w') as f:
-      f.write(self.to_csv()) 
 
-q= get_google_finance_intraday("CIPLA", 60, 1)
-print(q)
+
+def write_csv(self, filename):
+    with open(filename, 'w') as f:
+        f.write(self.to_csv())
+
+TCKR = pd.read_csv('TICKERS.csv')
+for i in range(TCKR.__len__()):
+    print("%s".center(40, '_')%TCKR.iloc[i, 0])
+    q = get_google_finance_intraday(TCKR.iloc[i,0], 3600, 1)
+    print(q)
