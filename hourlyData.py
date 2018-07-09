@@ -58,8 +58,19 @@ def write_csv(self, filename):
     with open(filename, 'w') as f:
         f.write(self.to_csv())
 
-TCKR = pd.read_csv('TICKERS.csv')
+TCKR = pd.read_csv('TICKERS_testing.csv')
+df_list = list()
+df_avg_list = list()
 for i in range(TCKR.__len__()):
     print("%s".center(40, '_')%TCKR.iloc[i, 0])
-    q = get_google_finance_intraday(TCKR.iloc[i,0], 3600, 1)
-    print(q)
+    df_list.append(get_google_finance_intraday(TCKR.iloc[i,0], 3600, 1))
+    if not df_list[i].empty:
+        dim = df_list[i].shape
+        df_list[i]['Ticker'] = pd.Series([TCKR.iloc[i, 0]]*dim[0]).values.reshape(-1, 1)
+        print(df_list[i])
+    else:
+        print 'No Stocks recorded for', TCKR.iloc[i,0]
+# TODO Get avg of OHLC & Store in CSV
+StockConclave = pd.concat(df_list)
+df = StockConclave.values
+StockConclave.to_csv('Results/StockConclave.csv')

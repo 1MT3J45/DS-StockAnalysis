@@ -35,14 +35,15 @@ def common_elements(list1, list2):
 filenames = get_filenames('BIRCH_Output')
 
 ofxls = []  # open file type xls
-for i in range(len(filenames)):
+no_of_days = int(input('Last how many days:'))
+for i in range(len(filenames[-no_of_days:])):
     ofxls.append('')
     ofxls[i] = xlrd.open_workbook(filenames[i])
 
 StockLists = []
 CountLists = []
 SheetCount = []
-for i in range(0, len(filenames)):  # Iteration over each data file
+for i in range(0, len(ofxls)):  # Iteration over each data file
     DayListCount = []
     DayStockList = []
     StockList = []
@@ -87,7 +88,7 @@ for k in range(len(StockLists[0])):
         RefLen = len(RefStockList)
         print('Reference list length', RefLen, 'for loop Number', i)
         print('Reference Stock list', RefStockList)
-        if i == 20:
+        if i == len(StockLists)-1:
             stocks = ', '.join(RefStockList)
             df = df.append({'Cluster': k, 'Stock_List': stocks}, ignore_index=True)
 df.to_csv('Results/ClusterResults.csv', index=False)
