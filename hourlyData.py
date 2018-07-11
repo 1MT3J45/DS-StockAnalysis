@@ -69,7 +69,7 @@ for i in range(TCKR.__len__()):
         df_list[i]['Ticker'] = pd.Series([TCKR.iloc[i, 0]]*dim[0]).values.reshape(-1, 1)
         print(df_list[i])
     else:
-        print 'No Stocks recorded for', TCKR.iloc[i,0]
+        print 'No Stocks recorded for', TCKR.iloc[i, 0]
 # TODO Get avg of OHLC & Store in CSV
 StockConclave = pd.concat(df_list)
 df = StockConclave.values
