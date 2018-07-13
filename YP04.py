@@ -50,8 +50,10 @@ def common_elements(list1, list2):
             result.append(list(set(list1) | set(list2)))
     return result
 
-
-filenames = get_filenames('BIRCH_Output')
+if os.uname()[0] is 'Linux':
+    filenames = get_filenames('BIRCH_Output')
+else:
+    filenames = get_filenames('C:\Users\Yogita\Desktop\DS-StockAnalysis_U1\DS-StockAnalysis-master\BIRCH_Output')
 
 ofxls = []  # open file type xls
 for i in range(len(filenames)):
